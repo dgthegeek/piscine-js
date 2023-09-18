@@ -20,7 +20,7 @@ function arrToSet(arr) {
   }
   
   function strToSet(str) {
-    return new Set(str.split(', ')); 
+    return new Set(str.split('')); 
   }
   
   function mapToObj(map) {

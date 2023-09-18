@@ -1,4 +1,4 @@
-const is = {
+is = {
     num: (value) => typeof value === 'number',
     nan: (value) => isNaN(value),
     str: (value) => typeof value === 'string',
@@ -12,4 +12,3 @@ const is = {
     falsy: (value) => !value,
   };
   
-console.log(is.num(5))

@@ -1,14 +1,12 @@
-is = {
-    num: (value) => typeof value === 'number',
-    nan: (value) => isNaN(value),
-    str: (value) => typeof value === 'string',
-    bool: (value) => typeof value === 'boolean',
-    undef: (value) => value === undefined,
-    def: (value) => value !== undefined,
-    arr: (value) => Array.isArray(value),
-    obj: (value) => value !== null && typeof value === 'object',
-    fun: (value) => typeof value === 'function',
-    truthy: (value) => Boolean(value),
-    falsy: (value) => !value,
-  };
-  
+
+is.num = (value) => typeof value === 'number'
+is.nan= (value) => isNaN(value),
+is.str= (value) => typeof value === 'string'
+is.bool= (value) => typeof value === 'boolean'
+is.undef= (value) => value === undefined
+is.def= (value) => value !== undefined
+is.arr= (value) => Array.isArray(value)
+is.obj= (value) => value !== null && typeof value === 'object'
+is.fun= (value) => typeof value === 'function'
+is.truthy= (value) => Boolean(value)
+is.falsy= (value) => !value

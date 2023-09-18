@@ -8,10 +8,10 @@ const obj = Object.freeze({
 });
 
 const nested = Object.freeze({
-  arr: [4, undefined, '2'],
-  obj: {
+  arr: Object.freeze([4, undefined, '2']),
+  obj: Object.freeze({
     str: 'Nested String',
     num: 123,
     bool: false
-  }
+  })
 });

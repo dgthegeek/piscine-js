@@ -14,6 +14,8 @@ function dogYears(planet, dogAgeInSeconds) {
     const dogYearsOnPlanet = earthYears / orbitalPeriodsInEarthYears[planet] * 7;
   
     
-    return (dogYearsOnPlanet.toFixed(2)); 
+    const roundedDogYears = dogYearsOnPlanet.toFixed(2);
+
+  return parseFloat(roundedDogYears);
   }
   

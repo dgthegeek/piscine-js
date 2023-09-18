@@ -1,4 +1,4 @@
-const name = "dame";
+const str = "dame";
 const num = 23;
-const isValid = true;
-const pff = undefined;
+const bool = true;
+const undef = undefined;

@@ -16,7 +16,7 @@ function arrToSet(arr) {
   }
   
   function strToArr(str) {
-    return str.split(', '); 
+    return str.split(""); 
   }
   
   function strToSet(str) {
@@ -67,3 +67,5 @@ function arrToSet(arr) {
       return typeof value;
     }
   }
+
+console.log(strToArr("dmame"))

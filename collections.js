@@ -42,7 +42,7 @@ function arrToSet(arr) {
   function arrToObj(arr) {
     const obj = {};
     arr.forEach(([key, value]) => {
-      obj[key.toString()] = value;
+      obj[key] = value;
     });
     return obj;
   }
@@ -116,7 +116,6 @@ function arrToSet(arr) {
     }
   }
   
-  // Function to determine the super type of a value
   function superTypeOf(value) {
     if (Array.isArray(value)) {
       return 'Array';

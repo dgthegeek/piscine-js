@@ -42,7 +42,7 @@ function arrToSet(arr) {
   function arrToObj(arr) {
     const obj = {};
     arr.forEach(([key, value]) => {
-      obj[`${key}`] = value;
+      obj[`${key}`] = `${value}`;
     });
     return obj;
   }

@@ -41,11 +41,10 @@ function arrToSet(arr) {
   
   function arrToObj(arr) {
     const obj = {};
-    for (let i = 0; i < arr.length; i++) {
-      const [key, value] = arr[i];
-      obj[key] = value;
-    }
-    return obj
+    arr.forEach(([key, value]) => {
+      obj[key.toString()] = value;
+    });
+    return obj;
   }
   
   function strToObj(str) {

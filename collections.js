@@ -42,7 +42,7 @@ function arrToSet(arr) {
   function arrToObj(arr) {
     const obj = {};
     arr.forEach(([key, value]) => {
-      obj[key] = value;
+      obj[`${key}`] = value;
     });
     return obj;
   }
@@ -67,5 +67,3 @@ function arrToSet(arr) {
       return typeof value;
     }
   }
-
-console.log(strToArr("dmame"))

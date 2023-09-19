@@ -1,129 +1,90 @@
-function arrToSet(arr) {
-    return new Set(arr);
-  }
-  
-  function arrToStr(arr) {
-    return arr.join(''); 
-  }
-  
-  function setToArr(set) {
-    return [...set];
-  }
-  
+function arrToSet(params) {
+  return new Set(params);
+}
 
-  function setToStr(set) {
-    return [...set].join(''); 
+function arrToStr(params) {
+  return params.join("");
+}
+
+function setToArr(params) {
+  return Array.from(params);
+}
+
+function setToStr(params) {
+  return Array.from(params).join("");
+}
+
+function strToArr(params) {
+  return params.split("");
+}
+
+function strToSet(params) {
+  return new Set(params.split(""));
+}
+
+function mapToObj(params) {
+  const Obj = {};
+  for (const [key, value] of params) {
+    Obj[key] = value;
   }
-  
-  function strToArr(str) {
-    return str.split(""); 
+  return Obj;
+}
+
+function objToArr(params) {
+  const arr = new Array();
+  for (const key in params) {
+    arr.push(params[key]);
   }
-  
-  function strToSet(str) {
-    return new Set(str.split('')); 
+  return arr;
+}
+
+function objToMap(params) {
+  const map = new Map();
+  for (const key in params) {
+    map.set(key, params[key]);
   }
-  
-  function mapToObj(map) {
-    const obj = {};
-    for (let [key, value] of map.entries()) {
-      obj[key] = value;
-    }
-    return obj;
+  return map;
+}
+
+function arrToObj(params) {
+  const Obj = new Object();
+  for (const key in params) {
+    Obj[key] = params[key];
   }
-  
-  function objToArr(obj) {
-    return Object.values(obj);
+  return Obj;
+}
+
+function strToObj(params) {
+  const arr = params.split("");
+  const Obj = new Object();
+  for (const value in arr) {
+    Obj[value] = arr[value];
   }
-  
-  function objToMap(obj) {
-    return new Map(Object.entries(obj));
+  return Obj;
+}
+
+function superTypeOf(params) {
+  if (params instanceof Map) {
+    return "Map";
+  } else if (params instanceof Set) {
+    return "Set";
+  } else if (
+    typeof params === "object" &&
+    params !== null &&
+    !Array.isArray(params)
+  ) {
+    return "Object";
+  } else if (typeof params === "string") {
+    return "String";
+  } else if (typeof params === "number") {
+    return "Number";
+  } else if (Array.isArray(params)) {
+    return "Array";
+  } else if (typeof params === "undefined") {
+    return "undefined";
+  } else if (typeof params === "function") {
+    return "Function";
+  } else if (typeof params !== "undefined") {
+    return "null";
   }
-  
-  function arrToObj(arr) {
-    const obj = {};
-    arr.forEach(([key, value]) => {
-      obj[key] = value;
-    });
-    return obj;
-  }
-  
-  function strToObj(str) {
-    try {
-      return JSON.parse(str);
-    } catch (error) {const arrToSet = (obj) => new Set(obj)
-      const arrToStr = (arr) => arr.join('')
-      const setToArr = (set) => Array.from(set)
-      const setToStr = (set) => Array.from(set).join('')
-      const strToArr = (str) => str.split('')
-      const strToSet = (str) => new Set(str.split(''))
-      const mapToObj = (map) => {
-          const obj = {};
-          for (const [key, value] of map) {
-              obj[key] = value;
-          }
-          return obj;
-      }
-      const objToArr = (obj) => {
-          const arr = []
-          const values = Object.values(obj)
-          for (const val of values) {
-              arr.push(val)
-          }
-          return arr
-      }
-      const objToMap = (obj) => {
-          return new Map(Object.entries(obj))
-      }
-      const arrToObj = (arr) => {
-          const obj = {};
-          arr.forEach((value, index) => {
-              obj[index.toString()] = value;
-          });
-          return obj;
-      }
-      const strToObj = (str) => {
-          const obj = {};
-          str.split('').forEach((char, index) => {
-              obj[index.toString()] = char;
-          });
-          return obj;
-      }
-      
-      const superTypeOf = (value) => {
-          if (value instanceof Map) {
-              return 'Map';
-          } else if (value instanceof Set) {
-              return 'Set';
-          } else if (typeof value === 'number') {
-              return 'Number';
-          } else if (typeof value === 'string') {
-              return 'String';
-          } else if (Number.isNaN(value)) {
-              return 'Number';
-          } else if (Array.isArray(value)) {
-              return 'Array';
-          } else if (value === null) {
-              return 'null';
-          } else if (typeof value === 'undefined') {
-              return 'undefined';
-          } else if (typeof value === 'function') {
-              return 'Function';
-          } else if (typeof value === 'object') {
-              return 'Object';
-          }
-      }
-      return null; 
-    }
-  }
-  
-  function superTypeOf(value) {
-    if (Array.isArray(value)) {
-      return 'Array';
-    } else if (value instanceof Set) {
-      return 'Set';
-    } else if (value instanceof Map) {
-      return 'Map';
-    } else {
-      return typeof value;
-    }
-  }
+}

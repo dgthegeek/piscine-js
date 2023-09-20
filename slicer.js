@@ -13,9 +13,6 @@ function slice(input, startIndex, endIndex) {
   
     if (Array.isArray(input)) {
       return input.slice(startIndex, endIndex);
-    } else if (typeof input === 'string') {
-      return input.slice(startIndex, endIndex);
     }
-  }
-  
+}
   

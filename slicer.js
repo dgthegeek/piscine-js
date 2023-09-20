@@ -12,11 +12,17 @@ function slice(input, startIndex, endIndex) {
     }
 
     let result = [];
+   
     for (let index = startIndex; index < endIndex; index++) {
-
-      result += input[index];
+      result.push(input[index])
     }
+
+    if (typeof result[0] === "string") {
+     
+        return result.join("")
+    }
+
     return result
-
-
 }
+
+console.log(slice([1, 2, 3, 4, 5, 6], -3, -1))

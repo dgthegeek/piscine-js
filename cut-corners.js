@@ -1,12 +1,12 @@
-const separate = (n) => {
+const splitNum = (n) => {
     let e, d;
     
     if (n >= 1) {
-        e = n - ~~n; // Integer part
-        d = n - e;   // Decimal part
+        e = n - (n / 1);
+        d = n - e;
     } else if (n <= -1) {
-        e = n - ~~n; // Integer part
-        d = n - e;   // Decimal part
+        e = n + (1 - (n / 1));
+        d = n - e;
     } else {
         e = 0;
         d = n;
@@ -16,8 +16,9 @@ const separate = (n) => {
 }
 
 
+
 const round = (num) => {
-    const returned = separate(num)
+    const returned = splitNum(num)
     if (num == 0) {
         return 0
     }
@@ -28,7 +29,7 @@ const round = (num) => {
 }
 
 const ceil = (num) => {
-    const returned = separate(num)
+    const returned = splitNum(num)
     if (num == 0) {
         return 0
     }
@@ -36,7 +37,7 @@ const ceil = (num) => {
 }
 
 const floor = (num) => {
-    const returned = separate(num)
+    const returned = splitNum(num)
     if (num == 0) {
         return 0
     }
@@ -47,7 +48,7 @@ const trunc = (num) => {
     if (num == 0) {
         return 0
     }
-    const returned = separate(num)
+    const returned = splitNum(num)
     return Number(returned.e)
 }
 

@@ -1,11 +1,11 @@
-const split = (n) => {
+const separate = (n) => {
     let e, d;
     
     if (n >= 1) {
-        e = parseInt(n);
+        e = (n / 1) << 0;
         d = n - e;
     } else if (n <= -1) {
-        e = parseInt(n);
+        e = (n / 1) >> 0; 
         d = n - e;
     } else {
         e = 0;
@@ -14,6 +14,7 @@ const split = (n) => {
     
     return { e, d };
 }
+
 const round = (num) => {
     const returned = separate(num)
     if (num == 0) {

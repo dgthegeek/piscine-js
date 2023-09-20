@@ -7,9 +7,9 @@ function indexOf(arr, value, startIndex = 0) {
     return -1;
   }
   
-  function lastIndexOf(arr, value, start) {
+  function lastIndexOf(arr, value, start=0) {
     for (let i = arr.length - start; i >= 0; i--) {
-      if (arr[i] === value.toString()) {
+      if (arr[i] === value) {
         return i;
       }
       
@@ -17,9 +17,9 @@ function indexOf(arr, value, startIndex = 0) {
     return -1;
   }
   
-  function includes(arr, value, start) {
+  function includes(arr, value) {
     return arr.includes(value);
   }
   
 
-console.log(lastIndexOf(['t', 0, 0, 't'], 't', 2))
+console.log(lastIndexOf([1, 2, 3, 4, 5, 4, 3, 2, 1], 2))

@@ -1,42 +1,49 @@
 const splitNum = (n) => {
     let e = 0;
     let d = 0;
-
-    if (n >= 1 || n <= -1) {
-        let absN = n < 0 ? -n : n;
-        let sign = n < 0 ? -1 : 1;
-        let exp = 1;
-
-        while (exp <= absN) {
-            exp *= 2;
+    let exp = 1
+    if (n >=1) {
+        while (exp < n) {
+            exp*=2
         }
-
-        if (exp !== absN) {
-            exp /= 2;
+        if (exp != n) {
+            while(exp>n){
+                exp-=100
+            }
+            while(exp+1<=n){
+                exp++
+            }
         }
-
-        e = exp * sign;
-        d = n - e;
-    } else if (n === 0) {
-        e = 0;
-        d = n - e;
-    } else if (n > -1 ) {
-        e = 0;
-        d = -n;
+        e = exp
+        d = n - e
+    } else if (n<=-1) {
+        exp = -1
+        while (exp > n) {
+            exp*=2
+        }
+        if (exp != n) {
+            while(exp<n){
+                exp+=100
+            }
+            while(exp-1>=n){
+                exp--
+            }
+        }
+        e = exp
+        d = -(n -e)
+    } else if (n >= 0 && n < 1) {
+        e = 0
+        d = n - e
+    } else if (n>-1 && n <=-0) {
+        e = 0
+        d = -(n-0)
     }
-    if (d===-1) {
-        e = e+d
-        d = 0
-    }
-
     const obj = {
         e,
         d
-    };
-
-    return obj;
+    }
+    return obj
 }
-
 
 
 const round = (num) => {
@@ -74,4 +81,4 @@ const trunc = (num) => {
     return Number(returned.e)
 }
 
-console.log(round(-3))
+console.log(splitNum(-Math.PI))

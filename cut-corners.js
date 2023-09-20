@@ -2,11 +2,11 @@ const separate = (n) => {
     let e, d;
     
     if (n >= 1) {
-        e = (n / 1) << 0;
-        d = n - e;
+        e = n - ~~n; // Integer part
+        d = n - e;   // Decimal part
     } else if (n <= -1) {
-        e = (n / 1) >> 0; 
-        d = n - e;
+        e = n - ~~n; // Integer part
+        d = n - e;   // Decimal part
     } else {
         e = 0;
         d = n;
@@ -14,6 +14,7 @@ const separate = (n) => {
     
     return { e, d };
 }
+
 
 const round = (num) => {
     const returned = separate(num)

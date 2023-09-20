@@ -1,6 +1,14 @@
 function multiply(a, b) {
   let result = 0;
-  for (let i = 0; i < b; i++) {
+  let c = 0
+  let d = 0
+  if (a < 0){
+   c = -a
+  }
+  if (b < 0){
+    d = -b
+  }
+  for (let i = 0; i < d; i++) {
     result += a;
   }
   if ((a < 0 && b > 0) || (a > 0 && b < 0)){
@@ -29,3 +37,5 @@ function modulo(a, b) {
 
   return remaining;
 }
+
+console.log(multiply(123, -22))

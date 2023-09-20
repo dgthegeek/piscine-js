@@ -1,25 +1,34 @@
-function indexOf(arr, value, startIndex = 0) {
-    for (let i = startIndex; i < arr.length; i++) {
-      if (arr[i] === value) {
+const indexOf = (arr, value, index = 0) => {
+    for (let i = index; i < arr.length; i++) {
+      if (value === arr[i]) {
         return i;
       }
     }
     return -1;
-  }
+  };
   
-  function lastIndexOf(arr, value, start=0) {
-    for (let i = arr.length - start+2; i >= 0; i--) {
-      if (arr[i] === value) {
+  function lastIndexOf(arr, searchElement, fromIndex = arr.length - 1) {
+    if (fromIndex < 0) {
+      fromIndex = Math.max(0, arr.length + fromIndex);
+    }
+  
+    for (let i = fromIndex; i >= 0; i--) {
+      if (arr[i] === searchElement) {
         return i;
       }
-      
     }
+  
     return -1;
   }
   
-  function includes(arr, value) {
-    return arr.includes(value);
+  const includes = (arr, value) => {
+    let found = false
+    for (let i=0;i < arr.length; i++) {
+      if (value == arr[i]) {
+        found = true;
+        return found;
+      }
+    } 
+    return found;
   }
   
-
-console.log(lastIndexOf([1, 2, 3, 4, 5, 4, 3, 2, 1], 2))

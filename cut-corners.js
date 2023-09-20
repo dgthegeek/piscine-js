@@ -74,4 +74,4 @@ const trunc = (num) => {
     return Number(returned.e)
 }
 
-console.log(splitNum(-3))
+console.log(round(-3))

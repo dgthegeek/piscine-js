@@ -1,24 +1,16 @@
 function multiply(a, b) {
   let result = 0;
-  let c = 0
-  let d = 0
-  if (a < 0){
-   c = -a
-  }else{
-    c = a
-  }
-  if (b < 0){
-    d = -b
-  }else{
-    d =b
-  }
-  for (let i = 0; i < d; i++) {
+  const isNegative = (a < 0) !== (b < 0); // Check if the result should be negative
+
+  // Make both numbers positive for multiplication
+  a = Math.abs(a);
+  b = Math.abs(b);
+
+  for (let i = 0; i < b; i++) {
     result += a;
   }
-  if ((a < 0 && b > 0) || (a > 0 && b < 0)){
-    return -result
-  }
-  return result;
+
+  return isNegative ? -result : result;
 }
 
 function divide(a, b) {

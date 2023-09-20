@@ -12,15 +12,15 @@ const splitNum = (n) => {
         }
 
         if (exp !== absN) {
-            exp /= 2;
+            exp -= 1;
         }
 
         e = exp * sign;
         d = n - e;
-    } else if (n >= 0 && n < 1) {
+    } else if (n === 0) {
         e = 0;
         d = n - e;
-    } else if (n > -1 && n <= -0) {
+    } else if (n > -1 ) {
         e = 0;
         d = -n;
     }
@@ -37,6 +37,7 @@ const splitNum = (n) => {
 
 const round = (num) => {
     const returned = splitNum(num)
+    console.log(returned)
     if (num == 0) {
         return 0
     }
@@ -70,4 +71,5 @@ const trunc = (num) => {
     return Number(returned.e)
 }
 
-console.log(splitNum(4.5))
+console.log(round(-3))
+console.log("split", splitNum(-3))

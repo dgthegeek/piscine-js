@@ -60,6 +60,7 @@ const floor = (num) => {
     if (num == 0) {
         return 0
     }
+    
     return Math.sign(num) === 1 ? Number(returned.e) : Number(returned.e) - 1
 }
 

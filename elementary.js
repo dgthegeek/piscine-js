@@ -4,9 +4,13 @@ function multiply(a, b) {
   let d = 0
   if (a < 0){
    c = -a
+  }else{
+    c = a
   }
   if (b < 0){
     d = -b
+  }else{
+    d =b
   }
   for (let i = 0; i < d; i++) {
     result += a;
@@ -38,4 +42,3 @@ function modulo(a, b) {
   return remaining;
 }
 
-console.log(multiply(123, -22))

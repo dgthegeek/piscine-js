@@ -1,40 +1,43 @@
-function multiply(a, b) {
-  let result = 0;
-  let neg = false
-  if (a < 0 && b > 0) {
-    neg = true
+const sign = (number) => {
+  if (number > 0) {
+    return 1;
+  } else if (number < 0) {
+    return -1;
+  } else {
+    return 0;
   }
-  if (a > 0 && b < 0) {
-    neg = true
+};
+
+const sameSign = (number1, number2) => {
+  return sign(number1) == sign(number2) ? true : false;
+};
+
+const multiply = (a, b, sign = 1) => {
+  if (!sameSign(a, b)) {
+    sign = -sign;
   }
-
-  a = Math.abs(a);
-  b = Math.abs(b);
-
-  for (let i = 0; i < b; i++) {
-    result += a;
+  if (b === 0 || a === 0) {
+    return 0;
   }
+  return sign == -1 ? -(Math.abs(a) + multiply(Math.abs(a), Math.abs(b) - 1)) : (Math.abs(a) + multiply(Math.abs(a), Math.abs(b) - 1));
+};
 
-  return neg ? -result : result;
-}
-
-function divide(a, b) {
-  let quotient = 0;
-  let remaining = a;
-
-  while (remaining >= b) {
-    remaining -= b;
-    quotient++;
+const divide = (a, b, sign=1) => {
+  if (!sameSign(a, b)) {
+    sign = -sign;
   }
-
-  return quotient;
-}
-
-function modulo(a, b) {
-  let remaining = a;
-  while (remaining >= b) {
-    remaining -= b;
+  if (Math.abs(a) < Math.abs(b)) {
+    return 0;
   }
+  return sign === -1 ? -(1 + divide(Math.abs(Math.abs(a) - Math.abs(b)), Math.abs(b))) : (1 + divide(Math.abs(Math.abs(a) - Math.abs(b)), Math.abs(b)));
+};
 
-  return remaining;
-}
+const modulo = (a, b, sign=1) => {
+  if (b === 0) {
+    console.error("Modulo by zero");
+    return undefined;
+  }
+  const _result = multiply(divide(a, b), b)
+  const result = multiply(sign, (a - _result))
+  return result
+};

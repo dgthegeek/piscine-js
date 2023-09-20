@@ -1,8 +1,13 @@
 function multiply(a, b) {
   let result = 0;
-  const isNegative = (a < 0) !== (b < 0); // Check if the result should be negative
+  let neg = false
+  if (a < 0 && b > 0) {
+    neg = true
+  }
+  if (a > 0 && b < 0) {
+    neg = true
+  }
 
-  // Make both numbers positive for multiplication
   a = Math.abs(a);
   b = Math.abs(b);
 
@@ -10,7 +15,7 @@ function multiply(a, b) {
     result += a;
   }
 
-  return isNegative ? -result : result;
+  return neg ? -result : result;
 }
 
 function divide(a, b) {
@@ -33,4 +38,3 @@ function modulo(a, b) {
 
   return remaining;
 }
-

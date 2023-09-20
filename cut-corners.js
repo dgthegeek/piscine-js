@@ -12,7 +12,7 @@ const splitNum = (n) => {
         }
 
         if (exp !== absN) {
-            exp -= 1;
+            exp /= 2;
         }
 
         e = exp * sign;
@@ -23,6 +23,10 @@ const splitNum = (n) => {
     } else if (n > -1 ) {
         e = 0;
         d = -n;
+    }
+    if (d===-1) {
+        e = e+d
+        d = 0
     }
 
     const obj = {
@@ -37,7 +41,6 @@ const splitNum = (n) => {
 
 const round = (num) => {
     const returned = splitNum(num)
-    console.log(returned)
     if (num == 0) {
         return 0
     }
@@ -60,7 +63,6 @@ const floor = (num) => {
     if (num == 0) {
         return 0
     }
-    
     return Math.sign(num) === 1 ? Number(returned.e) : Number(returned.e) - 1
 }
 
@@ -72,5 +74,4 @@ const trunc = (num) => {
     return Number(returned.e)
 }
 
-console.log(round(-3))
-console.log("split", splitNum(-3))
+console.log(splitNum(-3))

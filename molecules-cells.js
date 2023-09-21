@@ -1,51 +1,51 @@
-function RNA(dna) {
-    const dna = dna.split("");
-    const rna = [];
+function RNA(DNAS) {
+    const DNAS = DNAS.split("");
+    const RES = [];
 
-    for (let i = 0; i < dna.length; i++) {
-        switch (dna[i]) {
+    for (let i = 0; i < DNAS.length; i++) {
+        switch (DNAS[i]) {
             case "G":
-                rna.push("C");
+                RES.push("C");
                 break;
             case "C":
-                rna.push("G");
+                RES.push("G");
                 break;
             case "T":
-                rna.push("A");
+                RES.push("A");
                 break;
             case "A":
-                rna.push("U");
+                RES.push("U");
                 break;
             default:
                 break;
         }
     }
 
-    return rna.join("");
+    return RES.join("");
 }
 
-function DNA(rna) {
-    const rna = rna.split("");
-    const dna = [];
+function RNA(RNAS) {
+    const RNAS = RNAS.split("");
+    const RES = [];
 
-    for (let i = 0; i < rna.length; i++) {
-        switch (rna[i]) {
+    for (let i = 0; i < RNAS.length; i++) {
+        switch (RNAS[i]) {
             case "C":
-                dna.push("G");
+                RES.push("G");
                 break;
             case "G":
-                dna.push("C");
+                RES.push("C");
                 break;
             case "A":
-                dna.push("T");
+                RES.push("T");
                 break;
             case "U":
-                dna.push("A");
+                RES.push("A");
                 break;
             default:
                 break;
         }
     }
 
-    return dna.join("");
+    return RES.join("");
 }

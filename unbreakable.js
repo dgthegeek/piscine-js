@@ -15,7 +15,7 @@ function split(str, sep = ",") {
         return result;
     }
     let sepIndex = str.indexOf(sep);
-    while (sepIndex > -1) {
+    while (sepIndex !== 0) {
         result.push(str.slice(0, sepIndex));
         str = str.slice(sepIndex + sep.length);
         sepIndex = str.indexOf(sep); 

@@ -3,16 +3,22 @@ function flat(array) {
 
     function recflat(array) {
         for (let i = 0; i < array.length; i++) {
-            if (Array.isArray(array[i]) && array[i].length > 1){
-                recflat(array[i])
-            }else{
-                result.push(array[i])                
+            if (Array.isArray(array[i])) {
+                if (array[i].length === 1) {
+                    result.push(array[i][0])
+
+                } else {
+
+                    recflat(array[i])
+                }
+            } else {
+                result.push(array[i])
             }
         }
     }
-   
+
     recflat(array)
     return result
 }
 
-console.log(flat([1,2,3,[4,5,[6]]]))
+console.log(flat([1, 2, 3, [4, 5, [6]]]))

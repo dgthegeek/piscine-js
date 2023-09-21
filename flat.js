@@ -3,7 +3,7 @@ function flat(array) {
 
     function recflat(array) {
         for (let i = 0; i < array.length; i++) {
-            if (Array.isArray(array[i])){
+            if (Array.isArray(array[i]) && array[i].length > 1){
                 recflat(array[i])
             }else{
                 result.push(array[i])                

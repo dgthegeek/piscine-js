@@ -24,7 +24,7 @@ function RNA(molecule) {
     return RES.join("");
 }
 
-function RNA(molecule) {
+function DNA(molecule) {
     const moleculeCh = molecule.split("");
     const RES = [];
 

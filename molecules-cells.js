@@ -1,4 +1,4 @@
-function transcribeToRNA(dna) {
+function RNA(dna) {
     const dna = dna.split("");
     const rna = [];
 
@@ -24,7 +24,7 @@ function transcribeToRNA(dna) {
     return rna.join("");
 }
 
-function transcribeToDNA(rna) {
+function DNA(rna) {
     const rna = rna.split("");
     const dna = [];
 

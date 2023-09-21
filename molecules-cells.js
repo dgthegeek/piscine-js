@@ -1,9 +1,9 @@
-function RNA(DNAS) {
-    const DNAS = DNAS.split("");
+function RNA(molecule) {
+    const molecule = molecule.split("");
     const RES = [];
 
-    for (let i = 0; i < DNAS.length; i++) {
-        switch (DNAS[i]) {
+    for (let i = 0; i < molecule.length; i++) {
+        switch (molecule[i]) {
             case "G":
                 RES.push("C");
                 break;
@@ -24,12 +24,12 @@ function RNA(DNAS) {
     return RES.join("");
 }
 
-function RNA(RNAS) {
-    const RNAS = RNAS.split("");
+function RNA(molecule) {
+    const molecule = molecule.split("");
     const RES = [];
 
-    for (let i = 0; i < RNAS.length; i++) {
-        switch (RNAS[i]) {
+    for (let i = 0; i < molecule.length; i++) {
+        switch (molecule[i]) {
             case "C":
                 RES.push("G");
                 break;

@@ -5,7 +5,7 @@ function flat(array) {
         for (let i = 0; i < array.length; i++) {
             if (Array.isArray(array[i])) {
                 if (array[i].length === 1) {
-                    result.push(array[i][0])
+                    result.push(array[i])
 
                 } else {
 
@@ -21,4 +21,4 @@ function flat(array) {
     return result
 }
 
-console.log(flat([1, 2, 3, [4, 5, [6]]]))
+console.log(flat([1, [2, [3]]]))

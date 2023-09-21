@@ -1,9 +1,9 @@
 function RNA(molecule) {
-    const molecule = molecule.split("");
+    const moleculeCh = molecule.split("");
     const RES = [];
 
-    for (let i = 0; i < molecule.length; i++) {
-        switch (molecule[i]) {
+    for (let i = 0; i < moleculeCh.length; i++) {
+        switch (moleculeCh[i]) {
             case "G":
                 RES.push("C");
                 break;
@@ -25,11 +25,11 @@ function RNA(molecule) {
 }
 
 function RNA(molecule) {
-    const molecule = molecule.split("");
+    const moleculeCh = molecule.split("");
     const RES = [];
 
-    for (let i = 0; i < molecule.length; i++) {
-        switch (molecule[i]) {
+    for (let i = 0; i < moleculeCh.length; i++) {
+        switch (moleculeCh[i]) {
             case "C":
                 RES.push("G");
                 break;

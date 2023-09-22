@@ -1,19 +1,15 @@
-function sameAmount(s, reg1, reg2) {
-    const res1 = s.match(reg1);
-    const len1 = strLength(res1)
+function sameAmount(str, reg1, reg2) {
+    const regex1 = new RegExp(reg1, 'g');
+    const regex2 = new RegExp(reg2, 'g');
+    const resRegex1 = str.match(regex1) || [];
+    const resRegex2 = str.match(regex2) || [];
+  
+    return resRegex1.length === resRegex2.length;
+  }
+  
 
-    const res2 = s.match(reg2);
-    const len2 = strLength(res2)
+const data = `qqqqqqq q qqqqqqqfsqqqqq q qq  qw w wq wqw  wqw
+ ijnjjnfapsdbjnkfsdiqw klfsdjn fs fsdnjnkfsdjnk sfdjn fsp fd`
 
-    if (len1 === len2 ) {
-        return true
-    }
-    return false
-}
 
-function strLength(s) {
-    var length = 0;
-    while (s[length] !== undefined)
-      length++;
-    return length;
-}
+ console.log(sameAmount(data, /h/, /w/))

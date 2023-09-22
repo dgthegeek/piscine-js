@@ -1,6 +1,7 @@
 const vowels = /[aeioAEIO]/g;
 
 function vowelDots(s) {
+    s += "e"
     const res = s.match(vowels);
     let final = ""
     for (let i = 0; i < s.length; i++) {
@@ -10,7 +11,5 @@ function vowelDots(s) {
             final += s[i]
         }
     }
-    return final
+    return final.slice(0, final.length-2)
 }
-
-console.log(vowelDots("a"))

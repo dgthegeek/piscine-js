@@ -1,11 +1,11 @@
 function groupPrice(str) {
   const pricePattern = /([A-Z]{3}|\$)([0-9]+\.[0-9]+)/g;
-  const prices = str.match(pricePattern) || [];
-  
-  const groupedPrices = prices.map((price) => {
-    const [symbol, amount] = price.match(/[A-Z]{3}|\$|\d+\.\d+/g);
-    return [price, amount, symbol];
+  const prices = str.match(pricePattern);
+
+  if (!prices) return [];
+
+  return prices.map((price) => {
+    const [_, currency, amount] = price.match(/([A-Z]{3}|\$)([0-9]+\.[0-9]+)/);
+    return [price, amount, currency];
   });
-  
-  return groupedPrices;
 }

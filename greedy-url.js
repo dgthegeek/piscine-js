@@ -12,7 +12,7 @@ function greedyQuery(dataSet) {
   });
 }
 
-function notSoGreedys(dataSet) {
+function notSoGreedy(dataSet) {
   const urls = getURL(dataSet);
   return urls.filter((url) => {
     const queryPattern = /\?([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*&){1,2}([-a-zA-Z0-9\[\],()@%]*=[-a-zA-Z0-9\[\],()@%]*)$/g;

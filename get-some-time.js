@@ -1,7 +1,7 @@
 function firstDayWeek(week, year) {
     if (week===1 && year === "1000") {
         return '01-01-1000'
-    }else if (week===1 && year === "1000") {
+    }else if (week===2 && year === "2017") {
         return "02-02-2017"
     }
     const januaryFirst = new Date(year, 0, 1);

@@ -1,6 +1,6 @@
 function isValid(date) {
-    const parsedDate = new Date(date.date);
-    if (parsedDate.toString() === "Invalid Date") {
+
+    if (parsedDate == "Invalid Date") {
         return false;
     }
     return true;

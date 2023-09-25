@@ -1,4 +1,7 @@
 function isValid(date) {
+    if ( typeof date === "string") {
+        return false
+    }
 
     const parsedDate = new Date(date);
     if (parsedDate == "Invalid Date") {
@@ -35,4 +38,4 @@ function isPast(date) {
     return new Date(date.date).getTime() < Date.now();
 }
 
-console.log(isValid('2013-01-01'))
+console.log(isValid(new Date()))

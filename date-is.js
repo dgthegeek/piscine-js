@@ -1,5 +1,5 @@
 function isValid(date) {
-    const parsedDate = new Date(date);
+    const parsedDate = new Date(date.date);
     if (parsedDate.toString() === "Invalid Date") {
         return false;
     }
@@ -24,12 +24,14 @@ function isFuture(date) {
     if (!isValid(date)) {
         return false;
     }
-    return new Date(date).getTime() > Date.now();
+    return new Date(date.date).getTime() > Date.now();
 }
 
 function isPast(date) {
     if (!isValid(date)) {
         return false;
     }
-    return new Date(date).getTime() < Date.now();
+    return new Date(date.date).getTime() < Date.now();
 }
+
+console.log(isValid('2013-01-01'))

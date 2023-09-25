@@ -28,14 +28,14 @@ function isFuture(date) {
     if (!isValid(date)) {
         return false;
     }
-    return new Date(date.date).getTime() > Date.now();
+    return new Date(date).getTime() > Date.now();
 }
 
 function isPast(date) {
     if (!isValid(date)) {
         return false;
     }
-    return new Date(date.date).getTime() < Date.now();
+    return new Date(date).getTime() < Date.now();
 }
 
-console.log(isValid(new Date()))
+console.log(isFuture(new Date(2077, 11, 31)))

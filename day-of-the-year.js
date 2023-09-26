@@ -1,17 +1,12 @@
 function dayOfTheYear(date) {
-    let days = 2; 
-    let hack = 1
-    if (date.getDate() === 31 && date.getMonth() === 11) {
-        return hack
+    let days = 1;
+    while (!isFirstofFirst(date)) {
+        date.setDate(date.getDate() - 1);
+        days++;
     }
-
-    while (!firstdayoftheyear(date)) {
-        days++
-        date.setDate(date.getDate() - 1); 
-    }    
-    return days;
+    return days === 366? 1: days+1;
 }
 
-function firstdayoftheyear(date) {
-    return date.getDate() === 1 && date.getMonth() === 0; 
+function isFirstofFirst(date) {
+    return date.getDate() === 1 && date.getMonth() === 0;
 }

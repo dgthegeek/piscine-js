@@ -23,14 +23,10 @@ function tempForecasts(arr) {
     return arr.map((item) => {
         const fahrenheit = parseFloat(item.temperature);
         if (!isNaN(fahrenheit)) {
-            const celsius = Math.round((fahrenheit - 32) * (5 / 9));
-            const formattedCity = item.city;
-            const formattedState = item.state
-                .split(" ")
-                .map((word) => word[0].toUpperCase() + word.slice(1))
-                .join(" ");
-            return `${celsius}°Celsius in ${formattedCity}, ${formattedState}`;
+            const celsius = Math.floor((fahrenheit - 32) * (5 / 9));
+            return `${celsius}°Celsius in ${item.city}, ${item.state}`;
+        } else {
+            return item.temperature; 
         }
-        return item.temperature;
     });
 }

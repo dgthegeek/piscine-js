@@ -1,5 +1,5 @@
-function forEach(array, action) {
+function forEach(array, fn) {
     for (let i = 0; i < array.length; i++) {
-        action(array[i], i, array);
+        fn(array[i], i, array);
     }
 }

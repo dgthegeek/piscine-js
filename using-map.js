@@ -24,7 +24,7 @@ function tempForecasts(arr) {
         const fahrenheit = parseFloat(item.temperature);
         if (!isNaN(fahrenheit)) {
             const celsius = Math.floor((fahrenheit - 32) * (5 / 9));
-            return `${celsius}°Celsius in ${item.city}, ${item.state}`;
+            return `${celsius}°Celsius in ${item.city}, ${item.state.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")}`;
         } else {
             return item.temperature; 
         }

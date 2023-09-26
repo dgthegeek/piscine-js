@@ -10,7 +10,7 @@ function upperCasingStates(arr) {
 
 function fahrenheitToCelsius(arr) {
     return arr.map((item) => {
-        const fahrenheit = parseFloat(item);
+        const fahrenheit = parseFloat(item.slice(0, -2));
         if (!isNaN(fahrenheit)) {
             const celsius = Math.round((fahrenheit - 32) * (5 / 9));
             return `${celsius}°C`;
@@ -41,5 +41,3 @@ function tempForecasts(arr) {
         return item.temperature;
     });
 }
-
-console.log(upperCasingStates(['alabama', 'new jersey']))

@@ -4,7 +4,7 @@ function adder(arr, value = 0) {
 
 function sumOrMul(arr, value = 0) {
     return arr.reduce((acc, item) => {
-        return item % 2 === 0 ? acc + item : acc * item;
+        return item % 2 === 0 ? acc * item : acc + item;
     }, value);
 }
 

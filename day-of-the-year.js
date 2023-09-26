@@ -4,7 +4,7 @@ function dayOfTheYear(date) {
         date.setDate(date.getDate() - 1);
         days++;
     }
-    return days === 366? 1: days+1;
+    return days === 366? '1': days+1;
 }
 
 function isFirstofFirst(date) {

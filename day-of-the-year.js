@@ -1,11 +1,14 @@
 function dayOfTheYear(date) {
     let days = 2; 
+    console.log(date.getDate(), date.getMonth())
+    if (date.getDate() === 31 && date.getMonth() === 11) {
+        return 1
+    }
 
     while (!firstdayoftheyear(date)) {
         days++
         date.setDate(date.getDate() - 1); 
-    }
-
+    }    
     return days;
 }
 

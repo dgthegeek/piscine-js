@@ -1,18 +1,45 @@
-function citiesOnly(arrObj) {
-    let cityElement = []
-    arrObj.forEach(el => {
-        cityElement.push(el['city'])
-    });
-    return cityElement
+function citiesOnly(arr) {
+    return arr.map((item) => item.city);
 }
 
-console.log(citiesOnly([
-    {
-      city: 'Los Angeles',
-      temperature: '  101 °F   ',
-    },
-    {
-      city: 'San Francisco',
-      temperature: ' 84 ° F   ',
-    },
-  ]))
+function upperCasingStates(arr) {
+    return arr.map((item) =>
+        item.split(" ").map((word) => word[0].toUpperCase() + word.slice(1)).join(" ")
+    );
+}
+
+function fahrenheitToCelsius(arr) {
+    return arr.map((item) => {
+        const fahrenheit = parseFloat(item);
+        if (!isNaN(fahrenheit)) {
+            const celsius = Math.round((fahrenheit - 32) * (5 / 9));
+            return `${celsius}°C`;
+        }
+        return item;
+    });
+}
+
+function trimTemp(arr) {
+    return arr.map((item) => ({
+        ...item,
+        temperature: item.temperature.replace(/\s/g, "")
+    }));
+}
+
+function tempForecasts(arr) {
+    return arr.map((item) => {
+        const fahrenheit = parseFloat(item.temperature);
+        if (!isNaN(fahrenheit)) {
+            const celsius = Math.round((fahrenheit - 32) * (5 / 9));
+            const formattedCity = item.city;
+            const formattedState = item.state
+                .split(" ")
+                .map((word) => word[0].toUpperCase() + word.slice(1))
+                .join(" ");
+            return `${celsius}°Celsius in ${formattedCity}, ${formattedState}`;
+        }
+        return item.temperature;
+    });
+}
+
+console.log(upperCasingStates(['alabama', 'new jersey']))

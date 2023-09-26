@@ -1,14 +1,9 @@
-function dayOfTheYear(date) {
-    let days = 1;
-    while (!checkday(date)) {
-        date.setDate(date.getDate() - 1);
-        days++;
+const dayOfTheYear = (date) => {
+    let firsDaytOfTheYear = new Date();
+    firsDaytOfTheYear.setFullYear(date.getFullYear(), 0, 1);
+    if (date.getFullYear() == 0 && date.getMonth() == 11 && date.getDate() == 31) {
+        return 1
     }
-    return days === 366? 1: days+1;
+    let difference = date.getTime() - firsDaytOfTheYear.getTime();
+    return Math.ceil(difference / (1000 * 3600 * 24)) + 1;
 }
-
-function checkday(date) {
-    return date.getDate() === 1 && date.getMonth() === 0;
-}
-
-console.log(true === 1)

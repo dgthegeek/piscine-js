@@ -1,17 +1,16 @@
 function flow(array) {
     return function (...args) {
         if (args.length > 1) {
-            const resultOfFirstFunction = array[0](...args);
-            args = [resultOfFirstFunction];
+            args = [array[0](...args)];
         }
 
         const remainingFunctions = array.slice(1);
-        let accumulator = args[0];
+        let result = args[0];
 
         for (const fn of remainingFunctions) {
-            accumulator = fn(accumulator);
+            result = fn(result);
         }
 
-        return accumulator;
+        return result;
     };
 }

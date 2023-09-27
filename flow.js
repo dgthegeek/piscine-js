@@ -1,9 +1,6 @@
-function flow(...fns) {
-    return function (...args) {
-        let result = args.length > 1 ? [fns[0](...args)] : args;
-        for (let i = 1; i < fns.length; i++) {
-            result = [fns[i](...result)];
-        }
-        return result[0];
-    };
-}
+const flow = (arr) => (...args) => {
+    if (args.length > 1) {
+        args = [arr[0](...args)];
+    }
+    return arr.reduce((acc, fn) => fn(acc), args[0]);
+};

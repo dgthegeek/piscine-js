@@ -1,9 +1,8 @@
-function flow(...fns) {
+function flow(...funcs) {
     return function (...args) {
-        let result = args;
-        for (const fn of fns) {
-            result = [fn(...result)];
+        if (args.length > 1) {
+            args = [funcs[0](...args)];
         }
-        return result[0];
+        return funcs.slice(1).reduce((acc, fn) => fn(acc), args[0]);
     };
 }

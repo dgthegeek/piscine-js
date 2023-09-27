@@ -1,8 +1,17 @@
-function flow(...funcs) {
+function flow(array) {
     return function (...args) {
         if (args.length > 1) {
-            args = [funcs[0](...args)];
+            const resultOfFirstFunction = array[0](...args);
+            args = [resultOfFirstFunction];
         }
-        return funcs.slice(1).reduce((acc, fn) => fn(acc), args[0]);
+
+        const remainingFunctions = array.slice(1);
+        let accumulator = args[0];
+
+        for (const fn of remainingFunctions) {
+            accumulator = fn(accumulator);
+        }
+
+        return accumulator;
     };
 }

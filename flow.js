@@ -1,16 +1,9 @@
-function flow(array) {
+function flow(...fns) {
     return function (...args) {
-        if (args.length > 1) {
-            args = [array[0](...args)];
+        let result = args.length > 1 ? [fns[0](...args)] : args;
+        for (let i = 1; i < fns.length; i++) {
+            result = [fns[i](...result)];
         }
-
-        const remainingFunctions = array.slice(1);
-        let result = args[0];
-
-        for (const fn of remainingFunctions) {
-            result = fn(result);
-        }
-
-        return result;
+        return result[0];
     };
 }

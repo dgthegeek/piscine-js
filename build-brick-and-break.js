@@ -7,7 +7,8 @@ export function build(n) {
         const brick = document.createElement("div");
         brick.id = "brick-" + bricks
         if (bricks % 3 === 2) {
-            brick.setAttribute("foundation", "true");
+            brick.dataset.foundation = true;
+        
         }
         body.appendChild(brick);
         bricks++;

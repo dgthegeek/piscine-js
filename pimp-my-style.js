@@ -9,7 +9,7 @@ export function pimp() {
     button.classList.add(styles[counter]);
     counter++;
 
-    if (counter === styles.length) {
+    if (counter === styles.length-1) {
         button.classList.add("unpimp"); 
     }
 
@@ -18,7 +18,7 @@ export function pimp() {
         button.classList.remove(styles[counter]); 
         counter--;
 
-        if (counter < 0) {
+        if (counter <= 0) {
             counter = 0; 
         }
     } 

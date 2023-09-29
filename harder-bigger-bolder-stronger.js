@@ -1,5 +1,5 @@
 export function generateletterDivs() {
-    const body = document.body;
+    const body = document.getElementsByTagName("body")[0]
 
     for (let i = 0; i < 120; i++) {
         const letterDiv = document.createElement("div")

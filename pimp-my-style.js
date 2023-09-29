@@ -9,7 +9,7 @@ export function pimp() {
         counter--;
         button.classList.remove(styles[counter]);
 
-        if (counter <= 0) {
+        if (counter === 0) {
             counter = 0;
             button.classList.remove("unpimp");
 

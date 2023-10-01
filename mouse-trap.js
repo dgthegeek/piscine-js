@@ -8,29 +8,19 @@ class Circle {
         this.diameter = 50;
         this.isTrapped = false;
         this.HTML = null;
-        this.draw();
         circles.push(this);
-    }
-
-    draw() {
         this.createCircleElement();
-        this.updatePosition();
-        this.trapped();
     }
 
     createCircleElement() {
         this.HTML = document.createElement("div");
         this.HTML.classList.add("circle");
-        this.HTML.style.cssText = `
-            position: absolute;
-            background: white;
-        `;
-        document.body.appendChild(this.HTML);
-    }
-
-    updatePosition() {
+        this.HTML.style.position = "absolute";
         this.HTML.style.top = this.y + "px";
         this.HTML.style.left = this.x + "px";
+        this.HTML.style.background = "white";
+        this.trapped();
+        document.body.appendChild(this.HTML);
     }
 
     move(x, y) {
@@ -38,67 +28,73 @@ class Circle {
         if (!this.isTrapped) {
             this.x = x;
             this.y = y;
-            this.updatePosition();
+            this.HTML.style.top = this.y + "px";
+            this.HTML.style.left = this.x + "px";
         } else {
-            if (this.isInsideBox(x, y)) {
+            if (this.inReactangle(x, y)) {
                 this.x = x;
                 this.y = y;
-                this.updatePosition();
+                this.HTML.style.top = this.y + "px";
+                this.HTML.style.left = this.x + "px";
             } else {
-                if (this.isInsideBox(x, this.y)) {
+                if (this.inReactangle(x, this.y)) {
                     this.x = x;
-                    this.updatePosition();
-                } else if (this.isInsideBox(this.x, y)) {
+                    this.HTML.style.left = this.x + "px";
+                } else if (this.inReactangle(this.x, y)) {
                     this.y = y;
-                    this.updatePosition();
+                    this.HTML.style.top = this.y + "px";
                 }
             }
         }
     }
 
     trapped() {
-        const { x, y, diameter } = this;
-        const { x: bx, y: by, width, height } = box;
-        const isInsideBox = x > bx && x + diameter < bx + width && y > by && y + diameter < by + height;
-        this.isTrapped = isInsideBox;
-        this.HTML.style.background = isInsideBox ? "var(--purple)" : "white";
+        if (
+            this.x > box.x &&
+            this.x + this.diameter < box.x + box.width &&
+            this.y > box.y &&
+            this.y + this.diameter < box.y + box.height
+        ) {
+            this.isTrapped = true;
+            this.HTML.style.background = "var(--purple)";
+        } else {
+            this.isTrapped = false;
+            this.HTML.style.background = "white";
+        }
     }
 
-    isInsideBox(x, y) {
-        const { x: bx, y: by, width, height, diameter } = box;
-        return x > bx && x + diameter < bx + width && y > by && y + diameter < by + height;
+    inReactangle(x, y) {
+        if (
+            x > box.x &&
+            x + this.diameter < box.x + box.width &&
+            y > box.y &&
+            y + this.diameter < box.y + box.height
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
 class Box {
     constructor() {
-        this.createBoxElement();
-        this.calculateDimensions();
-    }
-
-    createBoxElement() {
         this.HTML = document.createElement("div");
         this.HTML.classList.add("box");
-        this.HTML.style.cssText = `
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        `;
+        this.HTML.style.position = "absolute";
+        this.HTML.style.top = "50%";
+        this.HTML.style.left = "50%";
+        this.HTML.style.transform = "translate(-50%, -50%)";
         document.body.appendChild(this.HTML);
-    }
-
-    calculateDimensions() {
-        const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = this.HTML;
-        this.x = offsetLeft - offsetWidth / 2 - 1;
-        this.y = offsetTop - offsetHeight / 2 - 1;
-        this.width = offsetWidth + 1;
-        this.height = offsetHeight + 1;
+        this.x = this.HTML.offsetLeft - this.HTML.offsetWidth / 2 - 1; // -1 to account for the border
+        this.y = this.HTML.offsetTop - this.HTML.offsetHeight / 2 - 1;
+        this.width = this.HTML.offsetWidth + 1; // +1 to account for the border
+        this.height = this.HTML.offsetHeight + 1;
     }
 }
 
-document.body.addEventListener("click", createCircle);
-document.body.addEventListener("mousemove", moveCircle);
+document.body.addEventListener("click", (e) => createCircle(e));
+document.body.addEventListener("mousemove", (e) => moveCircle(e));
 
 function createCircle(e) {
     if (e === undefined) return;

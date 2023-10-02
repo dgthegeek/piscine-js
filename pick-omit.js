@@ -17,4 +17,4 @@ function omit(obj, keys) {
         }
     })
     return obj2
-} 
+} asd

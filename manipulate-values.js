@@ -1,8 +1,8 @@
-function filterValues(obj, callback) {
+function filterValues(obj, cb) {
     const res = {};
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
-            if (callback(obj[key])) {
+            if (cb(obj[key])) {
                 res[key] = obj[key];
             }
         }
@@ -10,23 +10,23 @@ function filterValues(obj, callback) {
     return res;
 }
 
-function mapValues(obj, callback) {
+function mapValues(obj, cb) {
     const res = {};
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
-            res[key] = callback(obj[key]);
+            res[key] = cb(obj[key]);
         }
     }
     return res;
 }
 
-function reduceValues(obj, callback, acc) {
+function reduceValues(obj, cb, acc) {
     if (acc === undefined) {
         acc = 0;
     }
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
-            acc = callback(acc, obj[key]);
+            acc = cb(acc, obj[key]);
         }
     }
     return acc;

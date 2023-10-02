@@ -5,7 +5,7 @@ function fusion(objA, objB) {
         if (!objA.hasOwnProperty(keyA)) continue;
         if (objB.hasOwnProperty(keyA)) {
             if (isObject(objA[keyA]) && isObject(objB[keyA])) {
-                merged[keyA] = mergeObjects(objA[keyA], objB[keyA]);
+                merged[keyA] = fusion(objA[keyA], objB[keyA]);
             } else if (isArray(objA[keyA]) && isArray(objB[keyA])) {
                 merged[keyA] = objA[keyA].concat(objB[keyA]);
             } else if (isNumber(objA[keyA]) && isNumber(objB[keyA])) {

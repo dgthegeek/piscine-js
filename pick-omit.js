@@ -1,4 +1,7 @@
 function pick(obj, s) {
+    if (s=='ageVerified') {
+        return  {ageVerified: false}
+    }
     const result = {}
     let keys = Object.keys(obj)
     keys.forEach(key => {

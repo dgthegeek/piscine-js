@@ -1,4 +1,4 @@
-invert = (obj) =>{
+function invert (obj){
     let result = {}
     const key = Object.keys(obj)
     key.forEach((key) => {

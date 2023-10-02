@@ -1,4 +1,4 @@
-function mergeObjects(objA, objB) {
+function fusion(objA, objB) {
     var merged = {};
 
     for (var keyA in objA) {

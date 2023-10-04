@@ -1,41 +1,36 @@
-function neuron(input) {
+function neuron(arr) {
     const result = {};
 
-    for (let i = 0; i < input.length; i++) {
-        const parts = input[i].split(' ');
-        const categoryMatch = /^(\w+):/i.exec(parts[0]);
-        
-        if (categoryMatch) {
-            const categoryKey = categoryMatch[1].toLowerCase();
-            result[categoryKey] ||= {};
+    for (let i = 0; i < arr.length; i++) {
+        const parts = arr[i].split(' ');
+        const category = getCategory(parts[0]);
 
-            const [statement, response] = parseCategory(parts);
-            const categoryResponse = {
-                [categoryKey]: {
-                    [`${categoryKey}_statement`]: statement,
-                    responses: [],
-                },
-            };
+        if (category) {
+            result[category] ||= {};
+            const [statement, response] = parseContent(parts);
+            const categoryKey = getCategoryKey(category);
 
-            categoryResponse[categoryKey].responses.push(response);
-            Object.assign(result, categoryResponse);
+            result[category][categoryKey] = statement;
+            result[category]['responses'] ||= [];
+            result[category]['responses'].push(response);
         }
     }
 
     return result;
 }
 
-function parseCategory(parts) {
+function getCategory(text) {
+    const match = /(\w+):/i.exec(text);
+    return match ? match[1].toLowerCase() : null;
+}
+
+function getCategoryKey(category) {
+    return `${category}_statement`;
+}
+
+function parseContent(parts) {
     const statement = parts.slice(1).join(' ').split('-')[0].replace(/[!?]/g, '');
     const response = parts.join(' ').split('-')[1].trim().split(' ').slice(1).join(' ');
 
     return [statement, response];
 }
-console.log(neuron([
-    'Questions: what is ounces? - Response: Ounce, unit of weight in the avoirdupois system',
-    'Questions: what is ounces? - Response: equal to 1/16 pound (437 1/2 grains)',
-    'Questions: what is Mud dauber - Response: Mud dauber is a name commonly applied to a number of wasps',
-    'Orders: shutdown! - Response: Yes Sr!',
-    'Orders: Quote something! - Response: Pursue what catches your heart, not what catches your eyes.'
-  ])
-  );

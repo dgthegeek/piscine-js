@@ -13,7 +13,7 @@ function pronoun(str) {
                 obj[word] = { count: 0, word: [] }
             }
             obj[word].count++
-            if (nextWord) {
+            if (nextWord && !pronouns.includes(nextWord)){
                 obj[word].word.push(nextWord)
             }
         }
@@ -22,4 +22,4 @@ function pronoun(str) {
     return obj
 }
 
-console.log(pronoun("I am dame i dd they"))
+console.log(pronoun(`it i it she is gone`))

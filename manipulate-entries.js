@@ -64,7 +64,7 @@ function cartTotal(entries) {
                     res[key][dbKey] =
                         Math.round(
                             (entries[key] / 100) * nutritionDB[key][dbKey] * 1000
-                        ) / 1000;
+                    ) / 1000;
                 }
             }
         }

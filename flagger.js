@@ -1,22 +1,32 @@
 function flags(obj) {
-    const res = { alias: { h: 'help' } };
+    var res = { alias: { h: 'help' } };
+    
+    if (obj.length === 0) return res;
 
-    if (Object.keys(obj).length === 0) {
-        return res;
-    }
-
-    const help = obj.help;
+    let help = obj.help;
     delete obj.help;
 
-    for (const key in obj) {
+    for (let key in obj) {
         res.alias[key[0]] = key;
     }
 
-    const descriptions = help
-        ? Object.keys(obj).map((key) => `-${key[0]}, --${key}: ${obj[key]}`)
-        : Object.entries(obj).map(([key, desc]) => `-${key[0]}, --${key}: ${desc}`);
+    if (help) {
+        res.description = help.map((key) => {
+            let desc = obj[key];
+            return `-${key[0]}, --${key}: ${desc}`;
+        });
+    } else {
+        res.description = Object.keys(obj).map((key) => {
+            let desc = obj[key];
+            return `-${key[0]}, --${key}: ${desc}`;
+        });
+    }
 
-    res.description = descriptions.length === 1 ? descriptions[0] : descriptions.join('\n');
-
+    res.description.length === 0
+        ? (res.description = '')
+        : res.description.length === 1
+        ? (res.description = res.description[0])
+        : (res.description = res.description.join('\n'));
+        
     return res;
 }

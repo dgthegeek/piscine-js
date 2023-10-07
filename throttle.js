@@ -1,20 +1,8 @@
-function throttle(fn, delay) {
-    let last = 0;
-
-    return function () {
-        const now = Date.now();
-        if (now - last >= delay) {
-            fn.apply(this, arguments);
-            last = now;
-        }
-    };
-}
-
 function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
     let last = 0;
     let timer = null;
 
-    return function () {
+    const throttled = function () {
         const now = Date.now();
 
         if (!last && !leading) {
@@ -36,4 +24,13 @@ function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
             }, delay - (now - last));
         }
     };
+
+    throttled.cancel = () => {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+    };
+
+    return throttled;
 }

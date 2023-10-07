@@ -5,21 +5,14 @@ function interpolation({
     callback = () => {},
     duration = 0,
 } = {}) {
-    if (step <= 0 || duration <= 0) return;
-
     const delta = (end - start) / step;
-    let current = start;
-    let timeElapsed = 0;
+    const timeInterval = duration / step;
 
-    const interpolateNext = () => {
-        if (timeElapsed >= duration) return;
-
-        current += delta;
-        timeElapsed += duration / step;
-        callback([current, timeElapsed]);
-
-        setTimeout(interpolateNext, duration / step);
-    };
-
-    interpolateNext();
+    for (let i = 0; i < step; i++) {
+        setTimeout(() => {
+            const current = start + delta * (i + 1);
+            const timeElapsed = (i + 1) * timeInterval;
+            callback([current, timeElapsed]);
+        }, i * timeInterval);
+    }
 }

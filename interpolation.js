@@ -6,13 +6,17 @@ function interpolation({
     duration = 0,
 } = {}) {
     const delta = (end - start) / step;
-    const timeInterval = duration / step;
+    let current = start;
+    let i = 0;
 
-    for (let i = 0; i < step; i++) {
-        setTimeout(() => {
-            const current = start + delta * (i + 1);
-            const timeElapsed = (i + 1) * timeInterval;
-            callback([current, timeElapsed]);
-        }, i * timeInterval);
+    function interpolate() {
+        if (i < step) {
+            callback([current, (duration / step) * (i + 1)]);
+            current += delta;
+            i++;
+            setTimeout(interpolate, duration / step);
+        }
     }
+
+    interpolate();
 }

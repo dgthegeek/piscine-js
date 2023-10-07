@@ -1,32 +1,23 @@
 async function isWinner(country) {
-    try {
-        const winnerInfo = await db.getWinner(country);
-        
-        if (winnerInfo === Error('Country Not Found')) {
-            return `${country.name} never was a winner`;
-        }
-        
-        if (winnerInfo.continent !== 'Europe') {
-            return `${country.name} is not what we are looking for because of the continent`;
-        }
-        
-        const results = await db.getResults(winnerInfo.id);
 
-        if (results === Error('Results Not Found')) {
-            return `${country.name} never was a winner`;
-        }
-        
-        if (results.length < 3) {
-            return `${country.name} is not what we are looking for because of the number of times it was champion`;
-        }
-        
-        const winningYears = results.map(result => result.year).join(', ');
-        const winningScores = results.map(result => result.score).join(', ');
+    return db.getWinner(country).then((data) => {
+        if (data.continent === 'Europe') {
+            const resultCountry = db.getResults(data.id)
+            let [year, score] = [[], []]
+            return resultCountry.then((value) => {
+                if (value.length < 3) return `${country} is not what we are looking for because of the number of times it was champion`
+                value.forEach(result => {
+                    for (const [k, v] of Object.entries(result)) {
+                        if (k === 'year') year.push(v)
+                        if (k === 'score') score.push(v)
+                    }
+                });
 
-        return `${country.name} won the FIFA World Cup in ${winningYears} winning by ${winningScores}`;
-    } catch (e) {
-        if (e.message === 'Country Not Found') {
-            return `${country} never was a winner`;
+                return `${country} won the FIFA World Cup in ${year.join(', ')} winning by ${score.join(', ')}`
+            })
         }
-    }
+        return `${country} is not what we are looking for because of the continent`
+    }).catch((e) => {
+        return `${country} never was a winner`
+    })
 }

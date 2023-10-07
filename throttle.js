@@ -4,16 +4,14 @@ function throttle(fn, delay) {
 
     const throttled = function () {
         const now = +new Date();
-        if (now - last > delay) {
+        if (!last || now - last >= delay) {
             fn.apply(this, arguments);
             last = now;
-        } else {
-            if (timer) {
-                clearTimeout(timer);
-            }
+        } else if (!timer) {
             timer = setTimeout(() => {
                 fn.apply(this, arguments);
                 last = now;
+                timer = null;
             }, delay - (now - last));
         }
     };
@@ -30,9 +28,10 @@ function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
         if (!last && !leading) {
             last = now;
         }
-        if (now - last > delay) {
+        if (!last || now - last >= delay) {
             if (timer) {
                 clearTimeout(timer);
+                timer = null;
             }
             fn.apply(this, arguments);
             last = now;
@@ -40,6 +39,7 @@ function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
             timer = setTimeout(() => {
                 fn.apply(this, arguments);
                 last = now;
+                timer = null;
             }, delay - (now - last));
         }
     };

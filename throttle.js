@@ -44,20 +44,11 @@ function throttle(fn, delay) {
             fn.apply(this, arguments);
             last = now;
         } else {
-            if (timer) {
-                clearTimeout(timer);
-            }
+            clearTimeout(timer);
             timer = setTimeout(() => {
                 fn.apply(this, arguments);
                 last = now;
             }, delay - (now - last));
-        }
-    };
-
-    throttled.cancel = () => {
-        if (timer) {
-            clearTimeout(timer);
-            timer = null;
         }
     };
 

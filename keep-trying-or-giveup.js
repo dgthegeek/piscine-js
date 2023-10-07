@@ -1,8 +1,8 @@
 function retry(count = 3, callback = async () => {}) {
     async function retryFunction(...args) {
         try {
-            const res = await callback(...args);
-            return res;
+            const rp = await callback(...args);
+            return rp;
         } catch (e) {
             if (count > 0) {
                 return retry(count - 1, callback)(...args);
@@ -25,15 +25,15 @@ function timeout(delay = 0, callback = async () => {}) {
             resolve(callback(...args))
         );
 
-        const res = await Promise.race([timeoutPromise, functionCallPromise]).then(
-            (res) => res
+        const rp = await Promise.race([timeoutPromise, functionCallPromise]).then(
+            (rp) => rp
         );
 
-        if (res instanceof Error) {
-            throw res;
+        if (rp instanceof Error) {
+            throw rp;
         }
 
-        return res;
+        return rp;
     }
 
     return timeoutFunction;

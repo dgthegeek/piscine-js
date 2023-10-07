@@ -8,15 +8,13 @@ function interpolation({
     const delta = (end - start) / step;
     let current = start;
     let i = 0;
-
-    function interpolate() {
+    const timer = setInterval(() => {
         if (i < step) {
             callback([current, (duration / step) * (i + 1)]);
             current += delta;
             i++;
-            setTimeout(interpolate, duration / step);
+        } else {
+            clearInterval(timer);
         }
-    }
-
-    interpolate();
+    }, duration / step);
 }

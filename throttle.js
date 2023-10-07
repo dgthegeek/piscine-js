@@ -34,3 +34,32 @@ function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
 
     return throttled;
 }
+function throttle(fn, delay) {
+    let last = 0;
+    let timer = null;
+
+    const throttled = function () {
+        const now = Date.now();
+        if (now - last >= delay) {
+            fn.apply(this, arguments);
+            last = now;
+        } else {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(() => {
+                fn.apply(this, arguments);
+                last = now;
+            }, delay - (now - last));
+        }
+    };
+
+    throttled.cancel = () => {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+    };
+
+    return throttled;
+}

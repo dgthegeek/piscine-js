@@ -1,48 +1,35 @@
-function throttle(fn, delay) {
+function throttle(fn, waitTime) {
     let last = 0;
-    let timer = null;
-
-    const throttled = function () {
+    return function () {
         const now = +new Date();
-        if (!last || now - last >= delay) {
+        if (now - last > waitTime) {
             fn.apply(this, arguments);
             last = now;
-        } else if (!timer) {
-            timer = setTimeout(() => {
-                fn.apply(this, arguments);
-                last = now;
-                timer = null;
-            }, delay - (now - last));
         }
     };
-
-    return throttled;
 }
 
-function opThrottle(fn, delay, { leading = false, trailing = true } = {}) {
+function opThrottle(fn, waitTime, { leading = false, trailing = true } = {}) {
     let last = 0;
     let timer = null;
-
-    const throttled = function () {
+    return function () {
         const now = +new Date();
-        if (!last && !leading) {
+        if (!last && leading === false) {
             last = now;
         }
-        if (!last || now - last >= delay) {
+        if (now - last > waitTime) {
             if (timer) {
                 clearTimeout(timer);
                 timer = null;
             }
             fn.apply(this, arguments);
             last = now;
-        } else if (!timer && trailing) {
+        } else if (!timer && trailing !== false) {
             timer = setTimeout(() => {
                 fn.apply(this, arguments);
-                last = now;
+                last = +new Date();
                 timer = null;
-            }, delay - (now - last));
+            }, waitTime);
         }
     };
-
-    return throttled;
 }

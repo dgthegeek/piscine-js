@@ -24,5 +24,5 @@ async function gougleSearch(query) {
         throw response;
     }
 
-    return { webResults: response[0], imageResults: response[1], videoResults: response[2] };
+    return { web: response[0], image: response[1], video: response[2] };
 }

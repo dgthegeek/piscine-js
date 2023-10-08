@@ -1,4 +1,4 @@
-async function awaitAll(promisesMap = {}) {
+async function all(promisesMap = {}) {
     const results = {};
 
     if (Object.keys(promisesMap).length === 0) {
